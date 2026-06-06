@@ -1,0 +1,109 @@
+<!-- Bankvalidationform.html -->
+ 
+<!-- PAGE 2: FORM — Step 1 Bank Details -->
+
+<div class="page" id="page-bank">
+ 
+  <div class="form-wrapper">
+ 
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="prog-step active" id="prog-1">
+        <div class="prog-dot">1</div>
+        <div class="prog-label">Bank Details</div>
+      </div>
+      <div class="prog-step" id="prog-2">
+        <div class="prog-dot">2</div>
+        <div class="prog-label">UPI Setup</div>
+      </div>
+      <div class="prog-step" id="prog-3">
+        <div class="prog-dot">3</div>
+        <div class="prog-label">Secure PIN</div>
+      </div>
+    </div>
+ 
+    <!-- STEP 1: Bank Details -->
+    <div class="form-section visible" id="step-1">
+ 
+      <div class="form-section-title">Link your Bank Account</div>
+      <div class="form-section-sub">Enter your banking details to link your account to Payflow UPI.</div>
+ <form action="/Form/UpiController" method="post" onsubmit="return validateBankForm()">
+      <div class="form-grid">
+ 
+        <div class="form-group full">
+          <label class="form-label">Full Name (as per bank records) <span>*</span></label>
+          <input type="text" class="form-input" id="full-name" placeholder="e.g. Arjun Mehta" name="user_name" />
+        </div>
+ 
+        <div class="form-group full">
+          <label class="form-label">Bank Name <span>*</span></label>
+          <select class="form-select" id="bank-name" name="Bank_name">
+            <option value="" disabled selected>Select your bank</option>
+            <option>State Bank of India</option>
+            <option>HDFC Bank</option>
+            <option>ICICI Bank</option>
+            <option>Axis Bank</option>
+            <option>Kotak Mahindra Bank</option>
+            <option>Bank of Baroda</option>
+            <option>Punjab National Bank</option>
+            <option>Canara Bank</option>
+            <option>Union Bank of India</option>
+            <option>Yes Bank</option>
+            <option>IndusInd Bank</option>
+            <option>IDFC First Bank</option>
+          </select>
+        </div>
+ 
+        <div class="form-group full">
+          <label class="form-label">Account Number <span>*</span></label>
+          <input type="text" class="form-input" id="acc-num"
+            placeholder="Enter account number" maxlength="18"  />
+        </div>
+ 
+        <div class="form-group full">
+          <label class="form-label">Confirm Account Number <span>*</span></label>
+          <input type="text" class="form-input" id="acc-num-c"
+            placeholder="Re-enter account number" maxlength="18" name="account_number" />
+        </div>
+ 
+        <div class="form-group full">
+          <label class="form-label">IFSC Code <span>*</span></label>
+          <input type="text" class="form-input" id="ifsc"
+            placeholder="e.g. SBIN0001234" maxlength="11"
+            style="text-transform:uppercase"  name="ifsc_code" />
+          <span class="input-hint">11-character code on your cheque book / passbook</span>
+        </div>
+ 
+        <div class="form-group">
+          <label class="form-label">Account Type <span>*</span></label>
+          <select class="form-select" id="acc-type" name="account_type">
+            <option value="" disabled selected>Select type</option>
+            <option>Savings Account</option>
+            <option>Current Account</option>
+            <option>Salary Account</option>
+          </select>
+        </div>
+ 
+        <div class="form-group">
+          <label class="form-label">Mobile (linked to bank) <span>*</span></label>
+          <input type="tel" class="form-input" id="mobile"
+            placeholder="10-digit number" maxlength="10" name="mobile_number" />
+        </div>
+ 
+      </div><!-- /form-grid -->
+ 
+      <div class="form-actions">
+        <button type="submit" class="btn-next" value="accountcreate" name="bank_submit">
+          Continue &nbsp;&rarr;
+        </button>
+      </div>
+ </form>
+    </div><!-- /step-1 -->
+    </div><!-- form wrapper -->
+    </div><!-- form page -->
+ 
+
+  
+ 
+  
+ 

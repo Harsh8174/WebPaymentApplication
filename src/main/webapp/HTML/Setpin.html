@@ -1,0 +1,75 @@
+<!-- Setpin.html -->
+<div  class="page" id="page-pin">
+ 
+  <div class="form-wrapper">
+ 
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="prog-step active" id="prog-1">
+        <div class="prog-dot">1</div>
+        <div class="prog-label">Bank Details</div>
+      </div>
+      <div class="prog-step" id="prog-2">
+        <div class="prog-dot">2</div>
+        <div class="prog-label">UPI Setup</div>
+      </div>
+      <div class="prog-step" id="prog-3">
+        <div class="prog-dot">3</div>
+        <div class="prog-label">Secure PIN</div>
+      </div>
+    </div> 
+<!-- ─ STEP 3: Secure PIN ─ -->
+  <form action="/Form/UpiCreator" method="post" onsubmit="return validatePinForm()" >
+     
+      <div class="form-section" id="step-3">
+        <div class="form-section-title">Set your UPI PIN</div>
+        <div class="form-section-sub">Choose a 6-digit PIN to authorise all UPI transactions. Keep it private.</div>
+
+        <div class="form-grid">
+          <div class="form-group full">
+            <label class="form-label">Enter 6-Digit UPI PIN <span>*</span></label>
+            <div class="pin-row" id="pin-row">
+              <input type="password"  class="pin-input" maxlength="1" inputmode="numeric" id="p0"/>
+              <input type="password"  class="pin-input" maxlength="1" inputmode="numeric" id="p1"/>
+              <input type="password"  class="pin-input" maxlength="1" inputmode="numeric" id="p2"/>
+              <input type="password"  class="pin-input" maxlength="1" inputmode="numeric" id="p3"/>
+              <input type="password"  class="pin-input" maxlength="1" inputmode="numeric" id="p4"/>
+              <input type="password"  class="pin-input" maxlength="1" inputmode="numeric" id="p5"/>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label">Confirm UPI PIN <span>*</span></label>
+            <div class="pin-row" id="pin-confirm-row">
+              <input type="password" name="p01" class="pin-input" maxlength="1" inputmode="numeric" id="cp0"/>
+              <input type="password" name="p02" class="pin-input" maxlength="1" inputmode="numeric" id="cp1"/>
+              <input type="password" name="p03" class="pin-input" maxlength="1" inputmode="numeric" id="cp2"/>
+              <input type="password" name="p04" class="pin-input" maxlength="1" inputmode="numeric" id="cp3"/>
+              <input type="password" name="p05" class="pin-input" maxlength="1" inputmode="numeric" id="cp4"/>
+              <input type="password" name="p06" class="pin-input" maxlength="1" inputmode="numeric" id="cp5"/>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label">Debit Card Last 6 Digits <span>*</span></label>
+            <input type="text" class="form-input" name="dbcard_digit" id="card-last6" placeholder="123456" maxlength="6" inputmode="numeric"/>
+            <span class="input-hint">For verification — as required by NPCI/UPI guidelines.</span>
+          </div>
+
+          <div class="form-group full">
+            <label class="form-label">Card Expiry <span>*</span></label>
+            <input type="text" class="form-input" name="card_exp_date" id="card-expiry" placeholder="MM/YY" maxlength="5"/>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button class="btn-back" onclick="goStep(2)">← Back</button>
+          <button class="btn-next" value="set_pin" name="create_upi_id" onclick="createUPI()" id="create-btn">
+            🔒 &nbsp;Create UPI Account
+          </button>
+        </div>
+      </div>
+</form>
+
+  </div><!-- form wrapper -->
+    </div><!-- form page -->

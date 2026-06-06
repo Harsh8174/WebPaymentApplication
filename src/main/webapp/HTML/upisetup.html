@@ -1,0 +1,78 @@
+<!-- upisetup.html -->
+ <div class="page" id="page-upi">
+ 
+  <div class="form-wrapper">
+ 
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+      <div class="prog-step active" id="prog-1">
+        <div class="prog-dot">1</div>
+        <div class="prog-label">Bank Details</div>
+      </div>
+      <div class="prog-step" id="prog-2">
+        <div class="prog-dot">2</div>
+        <div class="prog-label">UPI Setup</div>
+      </div>
+      <div class="prog-step" id="prog-3">
+        <div class="prog-dot">3</div>
+        <div class="prog-label">Secure PIN</div>
+      </div>
+    </div>
+ 
+    <!-- STEP 2: UPI Setup -->
+    <div class="form-section" id="step-2">
+      <div class="form-section-title">Create your UPI ID</div>
+      <div class="form-section-sub">Choose a unique UPI address linked to your bank account.</div>
+<form action="/Form/UpiCreator" method="post" onsubmit="return validatePinForm()">      
+      <div class="form-grid">
+        <div class="form-group full">
+          <label class="form-label">UPI Handle <span>*</span></label>
+          <div style="display:flex; gap:10px; align-items:center;">
+            <input type="text"
+       class="form-input"
+       id="upi-handle"
+       name="upi_id"
+       placeholder="Enter mobile number"
+       maxlength="10"
+       oninput="updateUpiPreview()" 
+                 />
+            <span style="color:var(--muted); font-size:1.1rem; font-weight:500; white-space:nowrap;">@payflow</span>
+          </div>
+          <span class="input-hint">Enter your Mobile Number. No spaces.</span>
+        </div>
+ 
+        <div class="form-group full" id="upi-preview-box" style="display:none;">
+          <label class="form-label">Your UPI ID will be</label>
+          <div class="upi-preview">
+            <span class="upi-icon">&#x1F4F2;</span>
+            <span class="upi-id-text" id="upi-preview-text"></span>
+          </div>
+        </div>
+ 
+        <div class="form-group full">
+          <label class="form-label">Transaction Limit per Day <span>*</span></label>
+          <select class="form-select" id="txn-limit" name="trnasaction_limit">
+            <option value="" disabled selected>Choose limit</option>
+            <option value="10000">&#x20B9;10,000</option>
+            <option value="25000">&#x20B9;25,000</option>
+            <option value="50000">&#x20B9;50,000</option>
+            <option value="100000">&#x20B9;1,00,000</option>
+          </select>
+        </div>
+ 
+        <div class="form-group full">
+          <label class="form-label">Linked Email (optional)</label>
+          <input type="email" class="form-input" id="email"
+            placeholder="you@example.com" name="email" />
+        </div>
+ 
+      </div><!-- /form-grid -->
+      <div class="form-actions">
+        <button type="submit" name="create_upi_id" value="set_upi_id"  class="btn-back" onclick="goStep(1)">&larr; Back</button>
+        <button type="submit" name="create_upi_id" value="set_upi_id" class="btn-next" onclick="goStep3()">Continue &rarr;</button>
+      </div>
+  </form>
+    </div><!-- /step-2 -->
+   
+  </div><!-- form wrapper -->
+    </div><!-- form page -->

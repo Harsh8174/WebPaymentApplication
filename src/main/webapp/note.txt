@@ -1,0 +1,4 @@
+Set values scuh upi_id,upi_pin in user_upi --> model class
+from Upi_id_creator Controller.
+
+Setpin --->function like database entry of upi pin is incomplete;
