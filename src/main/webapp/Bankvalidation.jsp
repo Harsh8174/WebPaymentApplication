@@ -138,7 +138,7 @@ if(upi_id_message!=null){
 <script>
 const userName = "<%= u.getUsername() %>" ;
 var bankVerified = <%= bankVerified %>
-var message = "<%= message %>";
+var message = "<%= message %>"
 
 	var currentStep = 3;
 	var upiCreated = <%= (flag != null && !Boolean.parseBoolean(flag)) %>;

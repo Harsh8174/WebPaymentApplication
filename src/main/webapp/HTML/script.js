@@ -266,11 +266,14 @@
   
   window.onload = function() {
 
+	if (typeof showSuccess !== "undefined" && showSuccess) {
+	        showPage('page-success');
+	        return;
+	    }
       // Welcome page only
       if (typeof bankVerified === "undefined") {
           return;
       }
-
       // UPI pages
       if (typeof upiCreated !== "undefined" && upiCreated) {
           showPage('page-pin');
@@ -288,7 +291,7 @@
   };
   
   function validateBankForm() {
-	alert("validateBankForm called");
+	
 	
       const fullName = document.getElementById('full-name').value.trim();
       const bankName = document.getElementById('bank-name').value;

@@ -46,8 +46,10 @@ public class UserUpiController extends HttpServlet {
 			 String message = UserBankDao.checkbankdetails(u);
 			 request.setAttribute("msg", message);
 			 request.setAttribute("flag", "true");
+			 session.setAttribute("user_bank", u);
 			 request.getRequestDispatcher("Bankvalidation.jsp").forward(request, response);
 		}
+		
 	}
 
 }

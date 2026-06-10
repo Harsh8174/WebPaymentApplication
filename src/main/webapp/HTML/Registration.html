@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -140,6 +141,7 @@
     .gender-option input[type="radio"] {
       accent-color: #1D9E75;
       margin-right: 6px;
+      display:none;
     }
 
     .gender-option label {
@@ -193,6 +195,64 @@
       font-weight: 500;
     }
   </style>
+<script type="text/javascript">
+  function formvalidate(){
+     var name=document.getElementById("name");
+     var email=document.getElementById("email");
+     var contact=document.getElementById("contact");
+     var password=document.getElementById("password");
+     var flag=true;
+     console.log(name.value);
+     if(name.value==""){
+        console.log("called")
+         alert("name field cannot be empty");       
+            flag=false;
+        }
+     else if(email.value==""){
+          alert("email field cannot be empty");       
+           flag=false;
+     }
+     else if(contact.value==""){
+      alert("contact field cannot be empty");       
+           flag=false;
+     }else if(password.value==""){
+      alert("password field cannot be empty");       
+           flag=false;
+     }
+    else{
+      flag=true;
+     }
+     return flag;
+  }
+function mypassword(){
+	  var password=document.getElementById("password");
+    var password_value= password.value;
+    var flag = false;
+    var j=65;
+    var message="";
+   console.log(password_value.charCodeAt(0));
+   console.log(password_value.charCodeAt(0)<65 || password_value.charCodeAt(0)>90 );
+  if(password_value.charCodeAt(0)<65 || password_value.charCodeAt(0)>90 ){
+    flag=false;
+    console.log("called")
+  }else{
+     console.log("called else")
+    flag=true;
+  }
+ if(flag==false){
+     var span=document.getElementById("msg");
+     span.style.color='red';
+     span.innerHTML="Password must start with uppercase letter"; 
+ } 
+ else{
+  var span=document.getElementById("msg");
+     span.innerHTML=""; 
+ } 
+    
+
+  
+}
+</script>
 </head>
 <body>
 
@@ -203,11 +263,11 @@
       <div class="accent-bar"></div>
     </div>
 
-    <form class="field-group" action="/Form/userregister" method="post">
+    <form class="field-group" action="/Form/userregister" method="post" onsubmit="return formvalidate()">
 
       <div class="field">
         <label for="name">Full Name <span>*</span></label>
-        <input type="text" id="name" name="username" placeholder="e.g. Aryan Mehta" required />
+        <input type="text" id="name" name="username" placeholder="e.g. Aryan Mehta" required/>
       </div>
 
       <div class="field">
@@ -217,7 +277,12 @@
 
       <div class="field">
         <label for="contact">Contact Number <span>*</span></label>
-        <input type="tel" id="contact" name="usercontact" placeholder="+91 98765 43210" required />
+        <input type="tel" id="contact" name="usercontact" placeholder="+91 98765 43210" required/>
+      </div>
+      <div class="field">
+        <span id="msg"></span>
+        <label for="password">Password <span>*</span></label>
+        <input type="password" id="password" name="userpassword" placeholder="Enter your passwrod" onkeypress="mypassword()" maxlength="8" required />
       </div>
 
       <div class="field">
@@ -239,7 +304,7 @@
       </div>
 
 
-      <button type="submit" class="submit-btn" name="submit" value="register">Submit Registration</button>
+      <button type="submit" class="submit-btn" name="submit" value="register" >Submit Registration</button>
 
     </form>
 

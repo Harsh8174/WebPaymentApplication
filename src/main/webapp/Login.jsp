@@ -9,7 +9,7 @@ if(request.getAttribute("msg")!=null){
   String msg=(String)request.getAttribute("msg");
 
 %>
-<h3 style="color:red; position:absolute; top:20px; left:50%; transform:translateX(-50%);">
+<h3 id="server-msg"  style="color:red; position:absolute; top:20px; left:50%; transform:translateX(-50%);">
 <%= msg%>
 </h3>
 <%

@@ -43,6 +43,7 @@ public String getMobile_number() {
 public void setMobile_number(String mobile_number) {
 	this.mobile_number = mobile_number;
 }
+
 @Override
 public String toString() {
 	return "User_Bankdetails [name=" + name + ", bank_name=" + bank_name + ", account_number=" + account_number

@@ -1,0 +1,1177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Payflow &mdash; Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg:       #080c14;
+      --surface:  #0f1623;
+      --surface2: #141d2e;
+      --border:   rgba(255,255,255,0.07);
+      --accent:   #00e5a0;
+      --accent2:  #0066ff;
+      --text:     #f0f4ff;
+      --muted:    #7a8599;
+      --card:     rgba(255,255,255,0.04);
+      --red:      #ff5572;
+      --orange:   #ff9632;
+      --purple:   #8c50ff;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 40% at 80% 0%,   rgba(0,102,255,0.12) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 30% at 5%  90%,  rgba(0,229,160,0.08) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ═══════════════════════════════
+       SIDEBAR
+    ═══════════════════════════════ */
+    .sidebar {
+      position: fixed;
+      top: 0; left: 0;
+      width: 240px;
+      height: 100vh;
+      background: rgba(8,12,20,0.90);
+      backdrop-filter: blur(20px);
+      border-right: 1px solid var(--border);
+      display: flex;
+      flex-direction: column;
+      padding: 28px 0;
+      z-index: 50;
+    }
+
+    .sidebar-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 0 24px 32px;
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 20px;
+    }
+
+    .sidebar-logo .logo-mark {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+    }
+
+    .sidebar-logo span {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      color: var(--text);
+      letter-spacing: -0.3px;
+    }
+
+    .nav-group-label {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding: 0 24px;
+      margin: 16px 0 8px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 11px 24px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--muted);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      border-left: 3px solid transparent;
+      margin: 1px 0;
+    }
+
+    .nav-item:hover {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .nav-item.active {
+      color: var(--accent2);
+      background: rgba(0,102,255,0.08);
+      border-left-color: var(--accent2);
+    }
+
+    .nav-item .nav-icon {
+      width: 20px;
+      text-align: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .nav-badge {
+      margin-left: auto;
+      background: var(--red);
+      color: #fff;
+      font-size: 0.65rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 100px;
+    }
+
+    .sidebar-bottom {
+      margin-top: auto;
+      padding: 20px 24px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .sidebar-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 0;
+    }
+
+    .sidebar-avatar {
+      width: 38px; height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent2), var(--accent));
+      display: grid;
+      place-items: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+      flex-shrink: 0;
+    }
+
+    .sidebar-user-info .s-name {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .sidebar-user-info .s-email {
+      font-size: 0.74rem;
+      color: var(--muted);
+    }
+
+    /* ═══════════════════════════════
+       MAIN CONTENT
+    ═══════════════════════════════ */
+    .main {
+      margin-left: 240px;
+      flex: 1;
+      position: relative;
+      z-index: 1;
+      padding: 36px 40px 60px;
+      min-height: 100vh;
+    }
+
+    /* Top bar */
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 36px;
+    }
+
+    .topbar-left h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .topbar-left p {
+      font-size: 0.88rem;
+      color: var(--muted);
+      margin-top: 3px;
+    }
+
+    .topbar-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .icon-btn {
+      width: 40px; height: 40px;
+      border-radius: 10px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      font-size: 1rem;
+      color: var(--muted);
+      transition: all 0.2s ease;
+      position: relative;
+    }
+
+    .icon-btn:hover { background: rgba(255,255,255,0.08); color: var(--text); }
+
+    .notif-dot {
+      position: absolute;
+      top: 7px; right: 7px;
+      width: 7px; height: 7px;
+      background: var(--red);
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+    }
+
+    .quick-send-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, var(--accent2), #3385ff);
+      color: #fff;
+      border: none;
+      border-radius: 11px;
+      padding: 10px 20px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.88rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 20px rgba(0,102,255,0.3);
+      transition: all 0.25s ease;
+    }
+
+    .quick-send-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 28px rgba(0,102,255,0.45);
+    }
+
+    /* ═══════════════════════════════
+       BALANCE HERO CARD
+    ═══════════════════════════════ */
+    .balance-card {
+      background: linear-gradient(135deg, rgba(0,102,255,0.22), rgba(0,229,160,0.12));
+      border: 1px solid rgba(0,102,255,0.3);
+      border-radius: 24px;
+      padding: 36px 40px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .balance-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,102,255,0.2), transparent);
+      pointer-events: none;
+    }
+
+    .balance-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: 30%;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,229,160,0.12), transparent);
+      pointer-events: none;
+    }
+
+    .balance-left { position: relative; z-index: 1; }
+
+    .balance-label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(240,244,255,0.6);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .balance-label::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .balance-amount {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 12px;
+    }
+
+    .balance-upi {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,229,160,0.12);
+      border: 1px solid rgba(0,229,160,0.25);
+      border-radius: 100px;
+      padding: 5px 14px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .balance-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
+    }
+
+    .bal-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 14px;
+      padding: 14px 20px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 80px;
+      font-family: 'DM Sans', sans-serif;
+    }
+
+    .bal-btn:hover {
+      background: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    .bal-btn .bal-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 1rem;
+    }
+
+    .bal-btn .bal-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .icon-send    { background: rgba(0,102,255,0.25); }
+    .icon-receive { background: rgba(0,229,160,0.18); }
+    .icon-scan    { background: rgba(140,80,255,0.22); }
+    .icon-history { background: rgba(255,150,50,0.18); }
+
+    /* ═══════════════════════════════
+       STATS ROW
+    ═══════════════════════════════ */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 22px 24px;
+      transition: all 0.25s ease;
+    }
+
+    .stat-card:hover {
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+    }
+
+    .stat-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .stat-chip {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .chip-up   { background: rgba(0,229,160,0.15); color: var(--accent); }
+    .chip-down { background: rgba(255,85,114,0.15); color: var(--red); }
+
+    .stat-icon-box {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+    }
+
+    .stat-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 4px;
+    }
+
+    .stat-lbl { font-size: 0.8rem; color: var(--muted); }
+
+    /* ═══════════════════════════════
+       TWO COLUMN LAYOUT
+    ═══════════════════════════════ */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 360px;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    /* Card base */
+    .dash-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 22px;
+    }
+
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .card-link {
+      font-size: 0.8rem;
+      color: var(--accent2);
+      text-decoration: none;
+      cursor: pointer;
+      transition: opacity 0.2s;
+    }
+
+    .card-link:hover { opacity: 0.7; }
+
+    /* ─ Transactions ─ */
+    .txn-list { display: flex; flex-direction: column; gap: 4px; }
+
+    .txn-item {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 14px;
+      border-radius: 13px;
+      transition: background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .txn-item:hover { background: rgba(255,255,255,0.04); }
+
+    .txn-avatar {
+      width: 42px; height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .txn-info { flex: 1; min-width: 0; }
+
+    .txn-name {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .txn-date { font-size: 0.75rem; color: var(--muted); margin-top: 2px; }
+
+    .txn-amount {
+      font-family: 'Syne', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .txn-amount.credit { color: var(--accent); }
+    .txn-amount.debit  { color: var(--text); }
+
+    .txn-status {
+      font-size: 0.68rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 100px;
+      margin-top: 4px;
+      display: inline-block;
+    }
+
+    .status-done    { background: rgba(0,229,160,0.12); color: var(--accent); }
+    .status-pending { background: rgba(255,150,50,0.12); color: var(--orange); }
+    .status-failed  { background: rgba(255,85,114,0.12); color: var(--red); }
+
+    /* ─ Quick Contacts ─ */
+    .contacts-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-bottom: 22px;
+    }
+
+    .contact-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+    }
+
+    .contact-avatar {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      transition: transform 0.2s ease;
+    }
+
+    .contact-item:hover .contact-avatar { transform: scale(1.08); }
+
+    .contact-name {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 56px;
+    }
+
+    .add-contact {
+      width: 48px; height: 48px;
+      border-radius: 50%;
+      border: 2px dashed rgba(255,255,255,0.15);
+      display: grid;
+      place-items: center;
+      font-size: 1.2rem;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .add-contact:hover {
+      border-color: var(--accent2);
+      color: var(--accent2);
+    }
+
+    /* Send money mini form */
+    .send-form { display: flex; flex-direction: column; gap: 12px; }
+
+    .send-input-wrap {
+      position: relative;
+    }
+
+    .send-input-wrap .currency-prefix {
+      position: absolute;
+      left: 14px; top: 50%;
+      transform: translateY(-50%);
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--muted);
+    }
+
+    .send-input {
+      width: 100%;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 13px 16px 13px 34px;
+      font-family: 'Syne', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text);
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .send-input:focus {
+      border-color: var(--accent2);
+      background: rgba(0,102,255,0.06);
+      box-shadow: 0 0 0 3px rgba(0,102,255,0.12);
+    }
+
+    .send-upi-input {
+      width: 100%;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 16px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.9rem;
+      color: var(--text);
+      outline: none;
+      transition: all 0.25s ease;
+    }
+
+    .send-upi-input::placeholder { color: rgba(122,133,153,0.5); }
+
+    .send-upi-input:focus {
+      border-color: var(--accent2);
+      background: rgba(0,102,255,0.06);
+      box-shadow: 0 0 0 3px rgba(0,102,255,0.12);
+    }
+
+    .btn-send-now {
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent2), #3385ff);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 24px rgba(0,102,255,0.3);
+      transition: all 0.25s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .btn-send-now:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 32px rgba(0,102,255,0.45);
+    }
+
+    /* ─ Spending Chart ─ */
+    .chart-wrap {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 100px;
+      padding: 0 4px;
+      margin-bottom: 12px;
+    }
+
+    .bar-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .bar {
+      width: 100%;
+      border-radius: 6px 6px 0 0;
+      transition: height 0.6s ease;
+      min-height: 4px;
+    }
+
+    .bar-month {
+      font-size: 0.65rem;
+      color: var(--muted);
+    }
+
+    /* ─ Offers ─ */
+    .offers-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .offer-card {
+      border-radius: 16px;
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.25s ease;
+    }
+
+    .offer-card:hover { transform: translateY(-3px); }
+
+    .offer-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      pointer-events: none;
+    }
+
+    .offer-1 { background: linear-gradient(135deg, rgba(0,102,255,0.25), rgba(0,102,255,0.08)); border: 1px solid rgba(0,102,255,0.3); }
+    .offer-2 { background: linear-gradient(135deg, rgba(0,229,160,0.2),  rgba(0,229,160,0.06)); border: 1px solid rgba(0,229,160,0.3); }
+    .offer-3 { background: linear-gradient(135deg, rgba(140,80,255,0.2), rgba(140,80,255,0.06)); border: 1px solid rgba(140,80,255,0.3); }
+
+    .offer-icon { font-size: 1.6rem; margin-bottom: 10px; }
+    .offer-title {
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 0.92rem;
+      margin-bottom: 5px;
+    }
+
+    .offer-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+
+    .offer-tag {
+      display: inline-block;
+      margin-top: 10px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 100px;
+    }
+
+    .tag-blue   { background: rgba(0,102,255,0.2); color: #5599ff; }
+    .tag-green  { background: rgba(0,229,160,0.2); color: var(--accent); }
+    .tag-purple { background: rgba(140,80,255,0.2); color: #b07fff; }
+
+    /* Animations */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim-1 { animation: fadeUp 0.5s 0.05s ease both; }
+    .anim-2 { animation: fadeUp 0.5s 0.12s ease both; }
+    .anim-3 { animation: fadeUp 0.5s 0.19s ease both; }
+    .anim-4 { animation: fadeUp 0.5s 0.26s ease both; }
+    .anim-5 { animation: fadeUp 0.5s 0.33s ease both; }
+
+    /* Responsive */
+    @media (max-width: 1200px) {
+      .stats-row { grid-template-columns: repeat(2,1fr); }
+      .two-col   { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 900px) {
+      .sidebar { display: none; }
+      .main    { margin-left: 0; padding: 24px 20px 50px; }
+      .offers-row { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .stats-row       { grid-template-columns: 1fr 1fr; }
+      .balance-card    { flex-direction: column; align-items: flex-start; }
+      .contacts-grid   { grid-template-columns: repeat(4,1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+  <aside class="sidebar">
+
+    <a href="index.jsp" class="sidebar-logo">
+      <span class="logo-mark">&#x26A1;</span>
+      <span>PBM PAYFLOW</span>
+    </a>
+
+    <div class="nav-group-label">Main</div>
+
+    <a class="nav-item active" href="#">
+      <span class="nav-icon">&#x1F3E0;</span> Dashboard
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">&#x21C4;</span> Transactions
+      <span class="nav-badge">3</span>
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">&#x1F4B8;</span> Send Money
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">&#x1F4E5;</span> Receive
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">&#x1F4F1;</span> UPI &amp; QR
+    </a>
+
+    <div class="nav-group-label">Finance</div>
+
+    <a class="nav-item" href="#">
+      <span class="nav-icon">&#x1F4CA;</span> Analytics
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">&#x1F3E6;</span> Bank Accounts
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">&#x1F4B3;</span> Cards
+    </a>
+
+    <div class="nav-group-label">Account</div>
+
+    <a class="nav-item" href="#">
+      <span class="nav-icon">&#x2699;</span> Settings
+    </a>
+    <a class="nav-item" href="#">
+      <span class="nav-icon">&#x1F6AA;</span> Logout
+    </a>
+
+    <div class="sidebar-bottom">
+      <div class="sidebar-user">
+        <div class="sidebar-avatar">A</div>
+        <div class="sidebar-user-info">
+          <div class="s-name">Arjun Mehta</div>
+          <div class="s-email">arjun@payflow</div>
+        </div>
+      </div>
+    </div>
+
+  </aside>
+
+  <!-- ═══════════════════ MAIN ═══════════════════ -->
+  <main class="main">
+
+    <!-- Top Bar -->
+    <div class="topbar anim-1">
+      <div class="topbar-left">
+        <h1>Good evening, Arjun &#x1F44B;</h1>
+        <p>Here&rsquo;s what&rsquo;s happening with your money today.</p>
+      </div>
+      <div class="topbar-right">
+        <div class="icon-btn" title="Search">&#x1F50D;</div>
+        <div class="icon-btn" title="Notifications">
+          &#x1F514;
+          <span class="notif-dot"></span>
+        </div>
+        <button class="quick-send-btn">
+          &#x26A1; Quick Send
+        </button>
+      </div>
+    </div>
+
+    <!-- Balance Card -->
+    <div class="balance-card anim-2">
+      <div class="balance-left">
+        <div class="balance-label">Total Wallet Balance</div>
+        <div class="balance-amount">&#x20B9;1,24,580<span style="font-size:1.2rem;color:var(--muted)">.50</span></div>
+        <div class="balance-upi">&#x1F4F2; arjun@payflow</div>
+      </div>
+      <div class="balance-actions">
+        <button class="bal-btn">
+          <div class="bal-icon icon-send">&#x2197;</div>
+          <span class="bal-label">Send</span>
+        </button>
+        <button class="bal-btn">
+          <div class="bal-icon icon-receive">&#x2198;</div>
+          <span class="bal-label">Receive</span>
+        </button>
+        <button class="bal-btn">
+          <div class="bal-icon icon-scan">&#x1F4F7;</div>
+          <span class="bal-label">Scan</span>
+        </button>
+        <button class="bal-btn">
+          <div class="bal-icon icon-history">&#x1F4DC;</div>
+          <span class="bal-label">History</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Stats Row -->
+    <div class="stats-row anim-3">
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div class="stat-icon-box" style="background:rgba(0,229,160,0.12);">&#x1F4C8;</div>
+          <span class="stat-chip chip-up">&#x25B2; 12%</span>
+        </div>
+        <div class="stat-val">&#x20B9;38,200</div>
+        <div class="stat-lbl">Money Received</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div class="stat-icon-box" style="background:rgba(255,85,114,0.12);">&#x1F4C9;</div>
+          <span class="stat-chip chip-down">&#x25BC; 4%</span>
+        </div>
+        <div class="stat-val">&#x20B9;21,450</div>
+        <div class="stat-lbl">Money Sent</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div class="stat-icon-box" style="background:rgba(140,80,255,0.12);">&#x1F50A;</div>
+          <span class="stat-chip chip-up">&#x25B2; 3%</span>
+        </div>
+        <div class="stat-val">47</div>
+        <div class="stat-lbl">Transactions</div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-card-top">
+          <div class="stat-icon-box" style="background:rgba(255,150,50,0.12);">&#x1F3AF;</div>
+          <span class="stat-chip chip-up">&#x25B2; 8%</span>
+        </div>
+        <div class="stat-val">&#x20B9;580</div>
+        <div class="stat-lbl">Cashback Earned</div>
+      </div>
+
+    </div>
+
+    <!-- Two Column -->
+    <div class="two-col">
+
+      <!-- Recent Transactions -->
+      <div class="dash-card anim-4">
+        <div class="card-header">
+          <span class="card-title">Recent Transactions</span>
+          <a class="card-link">View all &rarr;</a>
+        </div>
+
+        <div class="txn-list">
+
+          <div class="txn-item">
+            <div class="txn-avatar" style="background:rgba(0,102,255,0.15);">&#x1F6CD;</div>
+            <div class="txn-info">
+              <div class="txn-name">Amazon Shopping</div>
+              <div class="txn-date">Today, 4:32 PM &bull; UPI</div>
+            </div>
+            <div>
+              <div class="txn-amount debit">- &#x20B9;2,499</div>
+              <div class="txn-status status-done">&#x2713; Done</div>
+            </div>
+          </div>
+
+          <div class="txn-item">
+            <div class="txn-avatar" style="background:rgba(0,229,160,0.12);">&#x1F9D1;</div>
+            <div class="txn-info">
+              <div class="txn-name">Rahul Sharma</div>
+              <div class="txn-date">Today, 2:10 PM &bull; UPI</div>
+            </div>
+            <div>
+              <div class="txn-amount credit">+ &#x20B9;5,000</div>
+              <div class="txn-status status-done">&#x2713; Done</div>
+            </div>
+          </div>
+
+          <div class="txn-item">
+            <div class="txn-avatar" style="background:rgba(255,150,50,0.12);">&#x26FD;</div>
+            <div class="txn-info">
+              <div class="txn-name">HP Petrol Pump</div>
+              <div class="txn-date">Yesterday, 9:05 AM &bull; UPI</div>
+            </div>
+            <div>
+              <div class="txn-amount debit">- &#x20B9;1,200</div>
+              <div class="txn-status status-done">&#x2713; Done</div>
+            </div>
+          </div>
+
+          <div class="txn-item">
+            <div class="txn-avatar" style="background:rgba(140,80,255,0.15);">&#x1F3CB;</div>
+            <div class="txn-info">
+              <div class="txn-name">Cult.fit Membership</div>
+              <div class="txn-date">Yesterday, 6:00 AM &bull; Auto-pay</div>
+            </div>
+            <div>
+              <div class="txn-amount debit">- &#x20B9;999</div>
+              <div class="txn-status status-pending">&#x23F3; Pending</div>
+            </div>
+          </div>
+
+          <div class="txn-item">
+            <div class="txn-avatar" style="background:rgba(0,229,160,0.12);">&#x1F4BC;</div>
+            <div class="txn-info">
+              <div class="txn-name">Salary Credit</div>
+              <div class="txn-date">01 Jun &bull; Bank Transfer</div>
+            </div>
+            <div>
+              <div class="txn-amount credit">+ &#x20B9;95,000</div>
+              <div class="txn-status status-done">&#x2713; Done</div>
+            </div>
+          </div>
+
+          <div class="txn-item">
+            <div class="txn-avatar" style="background:rgba(255,85,114,0.12);">&#x1F37D;</div>
+            <div class="txn-info">
+              <div class="txn-name">Zomato Order</div>
+              <div class="txn-date">31 May &bull; UPI</div>
+            </div>
+            <div>
+              <div class="txn-amount debit">- &#x20B9;348</div>
+              <div class="txn-status status-failed">&#x2717; Failed</div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right panel -->
+      <div style="display:flex; flex-direction:column; gap:20px;">
+
+        <!-- Send Money -->
+        <div class="dash-card anim-4">
+          <div class="card-header">
+            <span class="card-title">Send Money</span>
+          </div>
+
+          <!-- Quick Contacts -->
+          <div class="contacts-grid">
+            <div class="contact-item">
+              <div class="contact-avatar" style="background:linear-gradient(135deg,#0066ff,#3385ff);">R</div>
+              <span class="contact-name">Rahul</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-avatar" style="background:linear-gradient(135deg,#00e5a0,#00c47a);">P</div>
+              <span class="contact-name">Priya</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-avatar" style="background:linear-gradient(135deg,#8c50ff,#6a30dd);">S</div>
+              <span class="contact-name">Sneha</span>
+            </div>
+            <div class="contact-item">
+              <div class="contact-avatar" style="background:linear-gradient(135deg,#ff9632,#e07010);">K</div>
+              <span class="contact-name">Karan</span>
+            </div>
+          </div>
+
+          <div class="send-form">
+            <div class="send-input-wrap">
+              <span class="currency-prefix">&#x20B9;</span>
+              <input type="text" class="send-input" placeholder="0.00" />
+            </div>
+            <input type="text" class="send-upi-input" placeholder="UPI ID or mobile number" />
+            <button class="btn-send-now">
+              &#x26A1; Send Now
+            </button>
+          </div>
+        </div>
+
+        <!-- Spending Chart -->
+        <div class="dash-card anim-5">
+          <div class="card-header">
+            <span class="card-title">Monthly Spending</span>
+            <a class="card-link">2026</a>
+          </div>
+
+          <div class="chart-wrap">
+            <div class="bar-col">
+              <div class="bar" style="height:45%;background:rgba(0,102,255,0.3);"></div>
+              <span class="bar-month">Jan</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:60%;background:rgba(0,102,255,0.3);"></div>
+              <span class="bar-month">Feb</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:38%;background:rgba(0,102,255,0.3);"></div>
+              <span class="bar-month">Mar</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:72%;background:rgba(0,102,255,0.3);"></div>
+              <span class="bar-month">Apr</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:55%;background:rgba(0,102,255,0.3);"></div>
+              <span class="bar-month">May</span>
+            </div>
+            <div class="bar-col">
+              <div class="bar" style="height:82%;background:linear-gradient(to top,var(--accent2),#5599ff);box-shadow:0 0 12px rgba(0,102,255,0.5);"></div>
+              <span class="bar-month" style="color:var(--accent2);font-weight:600;">Jun</span>
+            </div>
+          </div>
+
+          <div style="display:flex;justify-content:space-between;align-items:center;padding-top:8px;border-top:1px solid var(--border);">
+            <div>
+              <div style="font-size:0.72rem;color:var(--muted);">This month</div>
+              <div style="font-family:'Syne',sans-serif;font-weight:700;font-size:1.05rem;">&#x20B9;21,450</div>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:0.72rem;color:var(--muted);">vs last month</div>
+              <div style="font-size:0.88rem;color:var(--red);font-weight:600;">&#x25BC; &#x20B9;4,210</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /right panel -->
+    </div><!-- /two-col -->
+
+    <!-- Offers -->
+    <div class="dash-card anim-5">
+      <div class="card-header">
+        <span class="card-title">Offers &amp; Rewards</span>
+        <a class="card-link">See all &rarr;</a>
+      </div>
+      <div class="offers-row">
+
+        <div class="offer-card offer-1">
+          <div class="offer-icon">&#x1F4B3;</div>
+          <div class="offer-title">5% Cashback on Bills</div>
+          <div class="offer-desc">Pay electricity, water &amp; gas bills and earn 5% cashback up to &#x20B9;200.</div>
+          <span class="offer-tag tag-blue">Expires 30 Jun</span>
+        </div>
+
+        <div class="offer-card offer-2">
+          <div class="offer-icon">&#x1F6D2;</div>
+          <div class="offer-title">Free Delivery on 3 Orders</div>
+          <div class="offer-desc">Link Zomato &amp; Swiggy to Payflow and get 3 free deliveries this month.</div>
+          <span class="offer-tag tag-green">New Offer</span>
+        </div>
+
+        <div class="offer-card offer-3">
+          <div class="offer-icon">&#x1F381;</div>
+          <div class="offer-title">Refer &amp; Earn &#x20B9;150</div>
+          <div class="offer-desc">Invite a friend to Payflow. Both of you earn &#x20B9;150 on their first payment.</div>
+          <span class="offer-tag tag-purple">Limited Time</span>
+        </div>
+
+      </div>
+    </div>
+
+  </main>
+
+</body>
+</html>

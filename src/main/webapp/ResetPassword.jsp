@@ -1,10 +1,11 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login</title>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
-  <style>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
  
     body {
@@ -204,46 +205,9 @@
     .signup-link a:hover { text-decoration: underline; }
   </style>
 </head>
+<body>
+<% String useremail=(String)request.getAttribute("Useremail"); %>
+  <%@ include file="HTML/ResetPassword.html" %> 
  
-  <div class="login-card">
- 
-    <div class="login-header">
-      <div class="icon">
-        <svg viewBox="0 0 24 24">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-          <circle cx="12" cy="7" r="4"/>
-        </svg>
-      </div>
-      <h1>Welcome Back</h1>
-      <p>Sign in to your account to continue</p>
-      <div class="accent-bar"></div>
-    </div>
- 
-    <form class="field-group" action="/Form/userregister" method="post">
- 
-      <div class="field">
-        <label for="email">Email Address <span>*</span></label>
-        <input type="email" id="email" name="useremail" placeholder="you@example.com" required />
-        <span class="hint hint-error">Please enter a valid email address.</span>
-        <span class="hint hint-ok">Looks good!</span>
-      </div>
-    <div class="field">
-        <label for="username">Password <span>*</span></label>
-        <input type="password" id="userpassword" name="userpassword" placeholder="Enter your userpassword" maxlength="8" required />
-      </div>
-      <div class="remember-forgot">
-        <label class="remember">
-          <input type="checkbox" name="remember" value="yes" />
-          Remember me
-        </label>
-        <a href="HTML/Forgotpassword.html" class="forgot-link">Forgot password?</a>
-      </div>
- 
-      <button type="submit" class="submit-btn" name="submit" value="login">Sign In</button>
- 
-    </form>
- 
-    <p class="signup-link">Don't have an account? <a href="Register.jsp">Create one</a></p>
- 
-  </div>
- 
+</body>
+</html>

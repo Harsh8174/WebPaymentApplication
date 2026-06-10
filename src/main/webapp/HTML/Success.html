@@ -1,0 +1,46 @@
+<!-- Success.html -->
+
+<!-- PAGE 3: SUCCESS -->
+<div class="page" id="page-success">
+
+  <div class="success-circle">
+    <svg class="checkmark" viewBox="0 0 52 52">
+      <circle class="checkmark-circle" cx="26" cy="26" r="24"/>
+      <polyline class="checkmark-check" points="14,27 22,35 38,17"/>
+    </svg>
+  </div>
+
+  <h2>UPI Account Created!</h2>
+
+  <p class="success-sub">
+    Your UPI ID is live and ready to use. Start sending and receiving money in seconds.
+  </p>
+
+  <div class="upi-card">
+    <div class="card-label">Your UPI ID</div>
+
+    <div class="upi-id-big" id="success-upi-id">
+      <%= u1.getUpi_id() %>
+    </div>
+
+    <div class="upi-meta">
+      <div class="upi-meta-item">
+        <div class="meta-label">Linked Bank</div>
+        <div class="meta-val" id="success-bank"><%= u_bank.getBank_name() %></div>
+      </div>
+      <div class="upi-meta-item">
+        <div class="meta-label">Account Holder</div>
+        <div class="meta-val" id="success-name"><%= u_bank.getName() %></div>
+      </div>
+      <div class="upi-meta-item">
+        <div class="meta-label">Daily Limit</div>
+        <div class="meta-val" id="success-limit">&#x20B9;<%= u1.getTransaction_limit() %></div>
+      </div>
+    </div>
+  </div>
+
+  <a href="dashboard.html" class="btn-dashboard">
+    Go to Dashboard &nbsp;&rarr;
+  </a>
+
+</div>

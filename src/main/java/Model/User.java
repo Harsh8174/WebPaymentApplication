@@ -6,7 +6,7 @@ private String username;
 private long contact;
 private String email;
 private String gender;
-private String Subject;
+private String Password;
 public int getId() {
 	return id;
 }
@@ -37,15 +37,16 @@ public String getGender() {
 public void setGender(String gender) {
 	this.gender = gender;
 }
-public String getSubject() {
-	return Subject;
+public String getPassword() {
+	return Password;
 }
-public void setSubject(String subject) {
-	Subject = subject;
+public void setPassword(String password) {
+	Password = password;
 }
 @Override
 public String toString() {
-	return "Usermodel [id=" + id + ", username=" + username + ", contact=" + contact + ", email=" + email + ", gender="
-			+ gender + ", Subject=" + Subject + "]";
+	return "User [id=" + id + ", username=" + username + ", contact=" + contact + ", email=" + email + ", gender="
+			+ gender + ", Password=" + Password + "]";
 }
+
 }
