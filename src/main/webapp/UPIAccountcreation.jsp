@@ -16,7 +16,7 @@
 
 <%@ include file="HTML/Navigation.html" %>
 <%@  include file="HTML/Welcome.html" %>
-<%@ include file= "HTML/Bankvalidationform.html" %>
+
 <script>const userName = "<%= u.getUsername() %>" 
 
 </script>

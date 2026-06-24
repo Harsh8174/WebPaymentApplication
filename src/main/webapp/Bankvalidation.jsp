@@ -1,15 +1,20 @@
+<%@page import="Model.User_Upi"%>
+<%@page import="Model.User_Bankdetails"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     import="Model.User" pageEncoding="UTF-8"%>
 
 <%
 User u = (User)session.getAttribute("User");
-
+User_Bankdetails u_bank=(User_Bankdetails)session.getAttribute("user_bank");
 String message = (String)request.getAttribute("msg");
-
+System.out.println("Bankvalidation page bank user :"+u_bank);
 boolean bankVerified = false;
 if(message != null &&
    message.equalsIgnoreCase("Bank Account Linked Successfully")){
     bankVerified = true;
+}
+else{
+	bankVerified=false;
 }
 
 String upi_id_message=(String)request.getAttribute("upi_id_msg");
@@ -20,6 +25,9 @@ if(upi_id_message!=null){
 	System.out.println("set_up : "+bankVerified);
 }
 %>
+ 
+    
+    
 
 <!DOCTYPE html>
 <html>
@@ -83,11 +91,15 @@ if(upi_id_message!=null){
   </script>
 <% } %>
 
+ 
     <% if(bankVerified){ %>
             <% boolean flag_value = Boolean.parseBoolean(flag); %>
-          <% if (flag_value) {%>
-          <%@ include file="HTML/upisetup.html" %>
-         <%} else{%>
+          <% if (u_bank!=null && flag_value) {%>
+           <%@ include file="HTML/upisetup.html" %>
+                       <% if(u_bank!=null){%><script>var upi_handle = document.getElementById('upi-handle');
+upi_handle.value= '<%=  u_bank.getMobile_number() %>' </script> <%}%>
+         <%
+          } else if(u_bank!=null){ %>
          <%@ include file="HTML/Setpin.html" %>
          <% } %>
     <% if(display_message_boolean != null){

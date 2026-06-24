@@ -1,12 +1,14 @@
 package Model;
 
-public class User_Bankdetails {
+public class User_Bankdetails {	
+private int user_id;
 private String name;
 private String bank_name;
 private long account_number;
 private String ifsc;
 private String account_type;
 private String mobile_number;
+private double bankbalance;
 public String getName() {
 	return name;
 }
@@ -48,5 +50,17 @@ public void setMobile_number(String mobile_number) {
 public String toString() {
 	return "User_Bankdetails [name=" + name + ", bank_name=" + bank_name + ", account_number=" + account_number
 			+ ", ifsc=" + ifsc + ", account_type=" + account_type + ", mobile_number=" + mobile_number + "]";
+}
+public double getBankbalance() {
+	return bankbalance;
+}
+public void setBankbalance(double bankbalance) {
+	this.bankbalance = bankbalance;
+}
+public int getUser_id() {
+	return user_id;
+}
+public void setUser_id(int user_id) {
+	this.user_id = user_id;
 }
 }

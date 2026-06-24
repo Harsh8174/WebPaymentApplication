@@ -1,8 +1,9 @@
 package Model;
 
 public class User_Upi {
+private int user_id;	
  private String upi_id;
- private int transaction_limit;
+ private double transaction_limit;
  private String email;
  private String upi_pin;
  private String card_digit; 
@@ -13,10 +14,10 @@ public class User_Upi {
  public void setUpi_id(String upi_id) {
 	this.upi_id = upi_id;
  }
- public int getTransaction_limit() {
+ public double getTransaction_limit() {
 	return transaction_limit;
  }
- public void setTransaction_limit(int transaction_limit) {
+ public void setTransaction_limit(double transaction_limit) {
 	this.transaction_limit = transaction_limit;
  }
  public String getEmail() {
@@ -42,5 +43,16 @@ public class User_Upi {
  }
  public void setExpiry_date(String expiry_date) {
 	this.expiry_date = expiry_date;
+ }
+ @Override
+ public String toString() {
+	return "User_Upi [upi_id=" + upi_id + ", transaction_limit=" + transaction_limit + ", email=" + email + ", upi_pin="
+			+ upi_pin + ", card_digit=" + card_digit + ", expiry_date=" + expiry_date + "]";
+ }
+ public int getUser_id() {
+	return user_id;
+ }
+ public void setUser_id(int user_id) {
+	this.user_id = user_id;
  }
 }

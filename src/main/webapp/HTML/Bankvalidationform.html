@@ -27,9 +27,9 @@
  
       <div class="form-section-title">Link your Bank Account</div>
       <div class="form-section-sub">Enter your banking details to link your account to Payflow UPI.</div>
- <form action="/Form/UpiController" method="post" onsubmit="return validateBankForm()">
+ <form action="./UpiController" method="post" onsubmit="return validateBankForm()">
       <div class="form-grid">
- 
+ <input type="hidden" name="user_id" value='<%= u.getId() %>' />
         <div class="form-group full">
           <label class="form-label">Full Name (as per bank records) <span>*</span></label>
           <input type="text" class="form-input" id="full-name" placeholder="e.g. Arjun Mehta" name="user_name" />

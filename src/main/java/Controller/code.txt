@@ -1,0 +1,19 @@
+if(login_user.isUpi_id_created()) {
+						  System.out.println("I am in");
+				
+						 
+						
+						  request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+					  }else {
+						  System.out.println("I am in else block");
+						  
+						  
+						  
+						  create table user_upi_id_details(
+upi_id varchar(255) not null unique,
+trnasaction_limit bigint not null ,
+upi_pin varchar(6) null,
+card_digit varchar(255) null,
+expiry_date varchar(255) null,
+email varchar(255) null
+); 

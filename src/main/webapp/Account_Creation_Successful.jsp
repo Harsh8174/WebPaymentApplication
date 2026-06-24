@@ -15,9 +15,11 @@
 </head>
 <body>
    <% String message = (String)request.getAttribute("msg");
-      User_Upi u1 = (User_Upi)request.getAttribute("User_upi");
-      User u = (User)session.getAttribute("User");
-      User_Bankdetails u_bank=(User_Bankdetails)session.getAttribute("user_bank");
+   User_Upi u1 = (User_Upi)session.getAttribute("User_upi");
+   User u = (User)session.getAttribute("User");
+   User_Bankdetails u_bank=(User_Bankdetails)session.getAttribute("user_bank");
+
+     System.out.println(u);
      System.out.println(u1.getUpi_id()); 
      System.out.println(u_bank.getName()); 
      System.out.println(u_bank.getBank_name()); 

@@ -7,6 +7,7 @@ private long contact;
 private String email;
 private String gender;
 private String Password;
+private boolean upi_id_created;
 public int getId() {
 	return id;
 }
@@ -47,6 +48,12 @@ public void setPassword(String password) {
 public String toString() {
 	return "User [id=" + id + ", username=" + username + ", contact=" + contact + ", email=" + email + ", gender="
 			+ gender + ", Password=" + Password + "]";
+}
+public boolean isUpi_id_created() {
+	return upi_id_created;
+}
+public void setUpi_id_created(boolean upi_id_created) {
+	this.upi_id_created = upi_id_created;
 }
 
 }

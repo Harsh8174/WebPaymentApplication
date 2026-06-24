@@ -32,10 +32,11 @@
        class="form-input"
        id="upi-handle"
        name="upi_id"
-       placeholder="Enter mobile number"
-       maxlength="10"
        oninput="updateUpiPreview()" 
+       value= ""
+       readonly
                  />
+        <input type="hidden" name="user_id" value ="<%= u.getId() %>">         
             <span style="color:var(--muted); font-size:1.1rem; font-weight:500; white-space:nowrap;">@payflow</span>
           </div>
           <span class="input-hint">Enter your Mobile Number. No spaces.</span>
@@ -51,7 +52,7 @@
  
         <div class="form-group full">
           <label class="form-label">Transaction Limit per Day <span>*</span></label>
-          <select class="form-select" id="txn-limit" name="trnasaction_limit">
+          <select class="form-select" id="txn-limit" name="transaction_limit">
             <option value="" disabled selected>Choose limit</option>
             <option value="10000">&#x20B9;10,000</option>
             <option value="25000">&#x20B9;25,000</option>
@@ -76,3 +77,6 @@
    
   </div><!-- form wrapper -->
     </div><!-- form page -->
+   
+    
+  

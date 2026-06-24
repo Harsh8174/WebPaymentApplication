@@ -506,6 +506,7 @@
   </style>
 </head>
 <body>
+
 <%@ include file="HTML/Index.html" %>
 </body>
 </html>

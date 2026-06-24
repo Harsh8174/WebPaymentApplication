@@ -326,7 +326,7 @@
           return false;
       }
 
-	  if (!/^[A-Za-z]{1,5}\d{4}$/.test(ifsc.trim())) {
+	  if (!/^[A-Za-z]{1,5}\d{1,4}$/.test(ifsc.trim())) {
 	      showToast("Invalid ifsc", false);
 	      return false;
 	  }

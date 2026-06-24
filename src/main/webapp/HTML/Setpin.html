@@ -24,7 +24,8 @@
       <div class="form-section" id="step-3">
         <div class="form-section-title">Set your UPI PIN</div>
         <div class="form-section-sub">Choose a 6-digit PIN to authorise all UPI transactions. Keep it private.</div>
-
+<input type="hidden" name="user_id" value="<%= u.getId()  %>"/> 
+<input type="hidden" name="user_email" value="<%= u.getEmail() %>"/>      
         <div class="form-grid">
           <div class="form-group full">
             <label class="form-label">Enter 6-Digit UPI PIN <span>*</span></label>
