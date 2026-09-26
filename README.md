@@ -114,30 +114,64 @@ The application follows a Java web MVC-style architecture.
 
 ```text
 Payflowmoney
-│
-├── src
-│   └── main
-│       │
-│       ├── java
-│       │   └── ...
-│       │
-│       └── webapp
-│           │
-│           ├── WEB-INF
-│           │   └── ...
-│           │
-│           ├── css
-│           │   └── ...
-│           │
-│           ├── js
-│           │   └── ...
-│           │
-│           └── *.jsp
-│
-├── lib
-│   └── JDBC / required libraries
-│
-└── README.md
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── bankdeatilsinsertion/
+│   │   │   │   └── bankdetails.java
+│   │   │   ├── Controller/
+│   │   │   │   ├── Ajaxservlet.java
+│   │   │   │   ├── dashboardpageloadercontroller.java
+│   │   │   │   ├── fileuploadcontroller.java
+│   │   │   │   ├── Transactioncontoller.java
+│   │   │   │   ├── Upi_id_Creator.java
+│   │   │   │   ├── Usercontroller.java
+│   │   │   │   ├── UserUpicontroller.java
+│   │   │   │   └── code.txt
+│   │   │   ├── DAO/
+│   │   │   │   ├── bankdetails_dao.java
+│   │   │   │   ├── Dao.java
+│   │   │   │   ├── DaoTransaction.java
+│   │   │   │   └── UserBankDao.java
+│   │   │   ├── DBCONNECTION/
+│   │   │   │   └── Dbconnection.java
+│   │   │   ├── Emailservice/
+│   │   │   │   └── EmailService.java
+│   │   │   └── Model/
+│   │   │       ├── transaction_model.java
+│   │   │       ├── User_Bankdetails.java
+│   │   │       ├── User_Upi.java
+│   │   │       ├── User.java
+│   │   │       └── Emailrelateddetails.txt
+│   │   └── webapp/
+│   │       ├── HTML/
+│   │       ├── images/
+│   │       ├── META-INF/
+│   │       └── WEB-INF/
+│   │           ├── Account_Creation_Successful.jsp
+│   │           ├── Bankvalidation.jsp
+│   │           ├── dashboard.jsp
+│   │           ├── Enterbankdetails.html
+│   │           ├── first request execution flow.png
+│   │           ├── ForgotPassword.jsp
+│   │           ├── index.jsp
+│   │           ├── Login.jsp
+│   │           ├── note.txt
+│   │           ├── receive.jsp
+│   │           ├── Register.jsp
+│   │           ├── Reg-Otp-Verification.jsp
+│   │           ├── ResetPassword.jsp
+│   │           ├── sendMoney.jsp
+│   │           ├── transactions.jsp
+│   │           └── UPIAccountcreation.jsp
+├── Libraries/
+│   ├── JRE System Library [JavaSE-21]
+│   ├── Referenced Libraries
+│   ├── Server Runtime [Apache Tomcat v9.0]
+│   └── Web App Libraries
+└── Referenced Libraries/
+    └── mysql-connector-j-9.7.0.jar
+
 ```
 
 ## 🗄️ Database
