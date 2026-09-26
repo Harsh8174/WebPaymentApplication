@@ -1,248 +1,309 @@
-# B2B Ceramic Portal
+# Web Payment Application
 
-A web-based **B2B Ceramic Tiles Portal** designed to connect ceramic tile sellers/manufacturers with business buyers such as tile shops, distributors, and retailers.
+A web-based **Payment Management Application** developed using Java web technologies. The application provides a platform for users to manage payment-related activities through a web interface.
 
-The portal allows sellers to manage their products and buyers to browse products, view product details, and interact with sellers through a centralized platform.
+The project demonstrates the practical implementation of **Java Servlets, JSP, JDBC, MySQL, HTML, CSS, and JavaScript** using a layered web application structure.
 
 ## 📌 Project Overview
 
-The **B2B Ceramic Portal** provides a digital platform for the ceramic tile business where:
+The **Web Payment Application** is designed to provide users with a simple web-based interface for performing and managing payment-related operations.
 
-* Sellers can register and manage their business profile.
-* Sellers can upload and manage ceramic tile products.
-* Buyers can register and maintain their company details.
-* Buyers can browse available ceramic products.
-* Products can be filtered based on different attributes.
-* Product information such as size, material, finish, price, and quantity is displayed to buyers.
-* The system maintains buyer, seller, and product information in a MySQL database.
+The application provides functionality for:
 
-The project demonstrates the implementation of **Java Web Development, Spring MVC, Hibernate/JPA, JSP, and MySQL**.
+* User registration and login
+* User authentication
+* Managing user information
+* Payment-related operations
+* Storing transaction information
+* Retrieving payment records from the database
+* Displaying payment information through JSP pages
+
+The project was developed to understand how a complete Java-based web application communicates with a relational database.
 
 ## 🚀 Features
 
-### Buyer Module
+### User Module
 
-* Buyer registration and login
-* Buyer profile management
-* Company information management
-* Browse ceramic tile products
-* Search and filter products
-* View product details
-* View seller/product information
+* User registration
+* User login
+* User authentication
+* User profile management
+* Session management
+* Logout functionality
 
-### Seller Module
+### Payment Module
 
-* Seller registration and login
-* Seller profile management
-* Add new products
-* Update product information
-* Delete products
-* Manage uploaded product images
-* View seller's products
-* Product categorization based on seller type
+* Initiate payment
+* Enter payment details
+* Process payment requests
+* Store payment information
+* Retrieve payment records
+* Display payment status
+* View transaction details
 
-### Product Management
+### Database Management
 
-The portal supports different types of ceramic products such as:
+The application uses **JDBC** to communicate with the MySQL database.
 
-* Glazed Vitrified Tiles (GVT)
-* Vitrified Tiles
-* Porcelain Tiles
-* Wall Tiles
-* Floor Tiles
-* Parking Tiles
-* Slabs
-* Step & Riser
+The application performs operations such as:
 
-Product information can include:
+* Insert
+* Select
+* Update
+* Delete
 
-* Product name
-* Category
-* Material
-* Size
-* Thickness
-* Finish
-* Price
-* Quantity per box
-* Product images
-* Seller/company information
+for managing users and payment-related information.
 
 ## 🛠️ Technologies Used
 
-| Technology                  | Purpose                    |
-| --------------------------- | -------------------------- |
-| Java                        | Backend programming        |
-| JSP                         | Frontend/server-side views |
-| HTML                        | Web page structure         |
-| CSS                         | Styling                    |
-| JavaScript                  | Client-side functionality  |
-| Spring MVC                  | Web application framework  |
-| Hibernate                   | ORM / Database interaction |
-| JPA                         | Persistence API            |
-| MySQL                       | Database                   |
-| Maven                       | Dependency management      |
-| Apache Tomcat               | Application server         |
-| Eclipse / Spring Tool Suite | Development environment    |
+| Technology    | Purpose                                |
+| ------------- | -------------------------------------- |
+| Java          | Backend programming                    |
+| JSP           | Dynamic web pages                      |
+| Servlet       | Request processing and business logic  |
+| JDBC          | Database connectivity                  |
+| MySQL         | Database                               |
+| HTML          | Web page structure                     |
+| CSS           | UI styling                             |
+| JavaScript    | Client-side validation and interaction |
+| Apache Tomcat | Web server / Servlet container         |
+| Eclipse / STS | Development environment                |
 
 ## 🏗️ Architecture
 
-The project follows a layered MVC-based architecture:
+The application follows a Java web MVC-style architecture.
 
 ```text
-                 ┌─────────────────────┐
-                 │       Browser       │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │      JSP / UI       │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │   Spring MVC        │
-                 │   Controllers       │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │   Service Layer     │
-                 │ Business Logic      │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │ DAO / Repository    │
-                 │ Layer               │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │ Hibernate / JPA     │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │       MySQL         │
-                 └─────────────────────┘
+                    ┌─────────────────────┐
+                    │       Browser       │
+                    │   HTML / CSS / JS   │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │        JSP          │
+                    │    Presentation     │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │      Servlet        │
+                    │  Request Handling   │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │    Java Classes     │
+                    │   Business Logic    │
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │        JDBC         │
+                    │ Database Connectivity│
+                    └──────────┬──────────┘
+                               │
+                               ▼
+                    ┌─────────────────────┐
+                    │       MySQL         │
+                    │      Database       │
+                    └─────────────────────┘
 ```
 
 ## 📂 Project Structure
 
 ```text
-Ceramic_B2B_Project
+Payflowmoney
 │
 ├── src
 │   └── main
-│       ├── java
-│       │   └── com
-│       │       └── ...
 │       │
-│       ├── resources
+│       ├── java
 │       │   └── ...
 │       │
 │       └── webapp
 │           │
 │           ├── WEB-INF
-│           │   ├── Buyer
-│           │   ├── Seller
 │           │   └── ...
 │           │
-│           └── ...
+│           ├── css
+│           │   └── ...
+│           │
+│           ├── js
+│           │   └── ...
+│           │
+│           └── *.jsp
 │
-├── pom.xml
+├── lib
+│   └── JDBC / required libraries
+│
 └── README.md
 ```
 
 ## 🗄️ Database
 
-The application uses **MySQL** as its relational database.
+The application uses **MySQL** for persistent storage.
 
 The database stores information related to:
 
-* Buyers
-* Sellers
-* Companies
-* Products
-* Product categories
-* Product images
-* User authentication
-* Other application-related data
+* Users
+* Payment details
+* Transactions
+* Payment status
+* Other application-related information
 
-### Example Product Information
+A simplified payment record can contain information such as:
 
 ```text
-Product Name : Royal Grey Marble
-Category     : Floor
-Material     : Vitrified
-Size         : 600 X 1200 mm
-Thickness    : 9 mm
-Finish       : Glossy
-Price        : ₹350
-Quantity     : 48 pcs/box
+Transaction ID
+User ID
+Amount
+Payment Method
+Transaction Date
+Payment Status
 ```
 
-## 🔐 Authentication
+## 🔄 Application Flow
 
-The portal provides separate authentication flows for:
-
-### Buyer
+The basic application flow is:
 
 ```text
-Buyer Registration
-        ↓
-Buyer Login
-        ↓
-Buyer Dashboard
-        ↓
-Browse Products
+User
+  ↓
+Open Web Application
+  ↓
+Register / Login
+  ↓
+User Authentication
+  ↓
+User Dashboard
+  ↓
+Enter Payment Details
+  ↓
+Payment Request
+  ↓
+Servlet Processes Request
+  ↓
+JDBC
+  ↓
+MySQL Database
+  ↓
+Payment Result
+  ↓
+JSP Displays Result
 ```
 
-### Seller
+## 🔐 Authentication Flow
+
+The application uses session-based authentication.
 
 ```text
-Seller Registration
-        ↓
-Seller Login
-        ↓
-Seller Dashboard
-        ↓
-Manage Products
+User Login
+    ↓
+Login Servlet
+    ↓
+Validate Credentials
+    ↓
+Check User in Database
+    ↓
+Credentials Valid?
+   / \
+ Yes  No
+  ↓    ↓
+Create  Show
+Session Error
+  ↓
+Dashboard
 ```
 
-Session management is used to maintain logged-in user information during the user's interaction with the application.
+After successful authentication, the user's information can be maintained using an HTTP session.
 
-## 🖼️ Product Image Management
+## 💳 Payment Processing Flow
 
-Sellers can upload multiple images for their products.
-
-The application supports uploading up to **6 product images** for a product.
-
-Uploaded images are stored in the application's dedicated seller upload directory.
+A typical payment operation follows this flow:
 
 ```text
-WEB-INF/
-   └── Seller/
-       └── Seller_upload_images/
+User enters payment details
+            ↓
+       Submit Form
+            ↓
+      Payment Servlet
+            ↓
+     Validate Input
+            ↓
+      JDBC Connection
+            ↓
+      Execute SQL Query
+            ↓
+     Store Transaction
+            ↓
+      Get Payment Result
+            ↓
+       JSP Response
+            ↓
+   Display Payment Status
 ```
 
-## 🔄 Product Filtering
+## 🧩 Backend Components
 
-Buyers can find products using different product attributes, such as:
+### JSP
+
+JSP is used for the presentation layer.
+
+It is responsible for:
+
+* Displaying forms
+* Displaying user information
+* Displaying payment information
+* Displaying success/error messages
+* Sending user input to Servlets
+
+### Servlet
+
+Servlets act as the controller layer.
+
+They are responsible for:
+
+* Receiving HTTP requests
+* Reading form parameters
+* Validating input
+* Calling backend logic
+* Communicating with JDBC
+* Managing sessions
+* Redirecting/forwarding requests
+
+### JDBC
+
+JDBC provides connectivity between the Java application and MySQL.
+
+Typical flow:
 
 ```text
-Category
-   ↓
-Material
-   ↓
-Size
-   ↓
-Finish
-   ↓
-Other Product Attributes
+Java Application
+      ↓
+JDBC Driver
+      ↓
+Connection
+      ↓
+PreparedStatement
+      ↓
+SQL Query
+      ↓
+MySQL
 ```
 
-This helps buyers find ceramic products according to their business requirements.
+`PreparedStatement` can be used for executing parameterized SQL queries and reducing SQL injection risks.
+
+## 🖥️ Frontend
+
+The frontend is developed using:
+
+* HTML
+* CSS
+* JavaScript
+* JSP
+
+JavaScript is used for client-side interactions and form validation, while JSP dynamically generates pages based on server-side data.
 
 ## ⚙️ Installation & Setup
 
@@ -254,152 +315,113 @@ git clone <repository-url>
 
 ### 2. Import the Project
 
-Open the project in:
+Import the project into:
 
 * Eclipse
-* Spring Tool Suite (STS)
-
-Import it as a **Maven Project**.
+* Spring Tool Suite
+* Any IDE supporting Java web applications
 
 ### 3. Configure MySQL
 
-Create a MySQL database:
+Create the required database in MySQL.
+
+Example:
 
 ```sql
-CREATE DATABASE B2B_Cermaic_Project;
+CREATE DATABASE Payflowmoney;
 ```
 
-Update your database configuration according to your local MySQL setup.
+Create the required tables according to the SQL/database structure used by the project.
+
+### 4. Configure JDBC
+
+Update the database connection details in the application's database configuration/class.
 
 Example:
 
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/B2B_Cermaic_Project
-spring.datasource.username=root
-spring.datasource.password=YOUR_PASSWORD
+```java
+String url = "jdbc:mysql://localhost:3306/Payflowmoney";
+String username = "root";
+String password = "YOUR_PASSWORD";
 ```
 
-> Replace the database username and password with your own local credentials.
+Replace the credentials with your local MySQL configuration.
 
-### 4. Install Dependencies
+### 5. Configure Apache Tomcat
 
-Maven will automatically download the dependencies defined in:
-
-```text
-pom.xml
-```
-
-You can also run:
-
-```bash
-mvn clean install
-```
-
-### 5. Configure Tomcat
-
-Deploy the project on **Apache Tomcat**.
+Deploy the application on **Apache Tomcat**.
 
 Example:
 
 ```text
-http://localhost:8080/Ceramic_B2B_Project
+http://localhost:8080/Payflowmoney
 ```
 
-The exact port may depend on your Tomcat configuration.
+The port and context path may vary depending on your local configuration.
 
 ## ▶️ How to Run
 
 1. Start MySQL.
 2. Start Apache Tomcat.
-3. Open the project URL in a browser.
-4. Register as a buyer or seller.
-5. Login to the respective dashboard.
-6. Sellers can add/manage products.
-7. Buyers can browse and filter products.
-
-## 🔑 Main User Roles
-
-### Seller
-
-```text
-Register
-   ↓
-Login
-   ↓
-Seller Dashboard
-   ↓
-Add Product
-   ↓
-Upload Images
-   ↓
-Manage Products
-```
-
-### Buyer
-
-```text
-Register
-   ↓
-Login
-   ↓
-Buyer Dashboard
-   ↓
-Browse Products
-   ↓
-Filter Products
-   ↓
-View Product Details
-```
+3. Deploy the Payflowmoney application.
+4. Open the application in a browser.
+5. Register a new user.
+6. Login using the registered credentials.
+7. Access the payment functionality.
+8. Enter the required payment information.
+9. Submit the payment request.
+10. View the transaction/payment result.
 
 ## 📚 Concepts Demonstrated
 
-This project demonstrates practical implementation of:
+This project demonstrates practical knowledge of:
 
-* Java
-* Object-Oriented Programming
-* MVC Architecture
-* Spring MVC
-* Dependency Injection
-* Inversion of Control
-* Hibernate ORM
-* JPA
-* Entity Mapping
-* Repository / DAO Pattern
-* CRUD Operations
-* MySQL Database Integration
+* Core Java
+* Java Web Development
+* Servlets
 * JSP
+* JDBC
+* MySQL
+* HTML
+* CSS
+* JavaScript
+* MVC Architecture
+* HTTP Request/Response
 * Session Management
+* CRUD Operations
+* SQL Queries
+* PreparedStatement
 * Form Handling
-* File Upload
-* Product Management
-* User Authentication
-* Database Relationships
-* Maven
-
-## 🎯 Project Objective
-
-The main objective of this project is to develop a **B2B digital marketplace for the ceramic tile industry**, providing separate functionality for buyers and sellers while demonstrating enterprise-level Java web development concepts.
+* Server-side Validation
+* Client-side Validation
+* Exception Handling
+* Apache Tomcat
+* Git/GitHub
 
 ## 🔮 Future Enhancements
 
-Possible future improvements include:
+Possible improvements include:
 
-* REST API integration
 * Spring Boot migration
-* Spring Security authentication
-* JWT-based authentication
-* Online enquiry system
-* Buyer-seller messaging
-* Product quotation system
+* Spring Security integration
+* REST API development
+* JWT authentication
+* Integration with a real payment gateway
+* Transaction history
 * Email notifications
-* WhatsApp integration
-* Advanced product search
-* Pagination
-* Cloud image storage
-* Online order management
-* Payment gateway integration
+* Payment receipt generation
 * Admin dashboard
-* Product recommendation system
+* Advanced transaction search
+* Pagination
+* Improved security
+* Cloud deployment
+* Dockerization
+
+## 🎯 Project Objective
+
+The main objective of this project was to build a complete **Java-based web application** and gain practical experience in developing a database-driven application using **JSP, Servlets, JDBC, and MySQL**.
+
+The project helped demonstrate how a user's request travels from the frontend through a Servlet and JDBC layer to the database and how the response is returned to the user through JSP.
 
 ## 👨‍💻 Author
 
@@ -411,16 +433,16 @@ B.Tech Computer Science & Engineering
 
 ```text
 Java
-Spring MVC
-Hibernate
-JPA
 JSP
+Servlet
+JDBC
 MySQL
 HTML
 CSS
 JavaScript
-Maven
+Apache Tomcat
 Git
+GitHub
 ```
 
 ## 📄 License
