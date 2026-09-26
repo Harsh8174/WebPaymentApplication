@@ -145,6 +145,28 @@ Payflowmoney
 │   │   │       └── Emailrelateddetails.txt
 │   │   └── webapp/
 │   │       ├── HTML/
+│   │       │   ├── Bankvalidationform.html
+│   │       │   ├── dashboard.css
+│   │       │   ├── dashboard.html
+│   │       │   ├── Forgotpassword.html
+│   │       │   ├── GenerateOtp.html
+│   │       │   ├── Index.html
+│   │       │   ├── Login.html
+│   │       │   ├── Navigation.html
+│   │       │   ├── Reg_regenerateotp.css
+│   │       │   ├── Registration.html
+│   │       │   ├── RegOtpGenerator.html
+│   │       │   ├── ResetPassword.html
+│   │       │   ├── script.js
+│   │       │   ├── scriptsuccess.js
+│   │       │   ├── sendMoney.html
+│   │       │   ├── Setpin.html
+│   │       │   ├── success.css
+│   │       │   ├── Success.html
+│   │       │   ├── UPIAccountcreation.css
+│   │       │   ├── upisetup.html
+│   │       │   ├── Welcome.html
+│   │       │   └── welcome.js
 │   │       ├── images/
 │   │       ├── META-INF/
 │   │       └── WEB-INF/
@@ -171,7 +193,6 @@ Payflowmoney
 │   └── Web App Libraries
 └── Referenced Libraries/
     └── mysql-connector-j-9.7.0.jar
-
 ```
 
 ## 🗄️ Database
