@@ -67,7 +67,7 @@ for managing users and payment-related information.
 | CSS           | UI styling                             |
 | JavaScript    | Client-side validation and interaction |
 | Apache Tomcat | Web server / Servlet container         |
-| Eclipse / STS | Development environment                |
+| Eclipse       | Development environment                |
 
 ## 🏗️ Architecture
 
